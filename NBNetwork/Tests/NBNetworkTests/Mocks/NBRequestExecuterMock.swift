@@ -1,8 +1,9 @@
+import Foundation
 @testable import NBNetwork
 
 final class NBRequestExecuterMock: NBRequestExecuterProtocol {
 
-    var calleNBithRequest: URLRequest?
+    var calledWithRequest: URLRequest?
 
     private var mockedResult: Result<Data, NBAPIError>?
 
@@ -11,7 +12,7 @@ final class NBRequestExecuterMock: NBRequestExecuterProtocol {
     }
 
     func execute(request: URLRequest, completion: NBAPIResult?) {
-        self.calleNBithRequest = request
+        self.calledWithRequest = request
 
         if let mockedResult = mockedResult {
             completion?(mockedResult)

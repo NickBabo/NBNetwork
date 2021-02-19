@@ -1,3 +1,4 @@
+import Foundation
 import Quick
 import Nimble
 
@@ -15,8 +16,10 @@ final class NBNetworkTests: QuickSpec {
             delegateMock = NBNetworkDelegateMock()
             mockRequest(ObjectMock())
 
-            sut = NBNetwork(requestExecuter: requestExecuterMock,
-                            bundle: Bundle(for: BundleExtTests.self))
+            sut = NBNetwork(
+                requestExecuter: requestExecuterMock,
+                bundle: Bundle(for: BundleExtTests.self)
+            )
         }
 
         describe("#init") {
@@ -46,7 +49,7 @@ final class NBNetworkTests: QuickSpec {
             it("requests a service and decodes the response into given type") {
                 sut.request(ServiceMock(), responseType: ObjectMock.self) { result in
                     let expectedURL = URL(string: "base.url.test/example/path")
-                    expect(requestExecuterMock.calleNBithRequest?.url).to(equal(expectedURL))
+                    expect(requestExecuterMock.calledWithRequest?.url).to(equal(expectedURL))
 
                     switch result {
                     case .success(let objectMock):

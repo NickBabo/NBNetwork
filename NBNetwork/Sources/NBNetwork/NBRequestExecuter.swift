@@ -1,3 +1,5 @@
+import Foundation
+
 protocol NBRequestExecuterProtocol {
 
     func execute(request: URLRequest, completion: NBAPIResult?)

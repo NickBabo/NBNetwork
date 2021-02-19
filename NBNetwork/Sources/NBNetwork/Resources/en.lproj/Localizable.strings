@@ -1,0 +1,5 @@
+"noResponseDescription" = "No Response";
+"noDataDescription" = "No Data - Data object received in response is empty";
+"decodingErrorDescription" = "Decoding Error - Unable to decode received data into desired object";
+"invalidBaseURLDescription" = "Invalid Base URL - Unable to find Base URL specification";
+"statusCodeErrorDescription" = "Internal Server Error - Status Code: %@";
