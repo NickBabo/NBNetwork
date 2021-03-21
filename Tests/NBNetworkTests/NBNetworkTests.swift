@@ -16,10 +16,7 @@ final class NBNetworkTests: QuickSpec {
             delegateMock = NBNetworkDelegateMock()
             mockRequest(ObjectMock())
 
-            sut = NBNetwork(
-                requestExecuter: requestExecuterMock,
-                bundle: Bundle(for: BundleExtTests.self)
-            )
+            sut = NBNetwork(requestExecuter: requestExecuterMock).configure(baseURL: "base.url.test/")
         }
 
         describe("#init") {
@@ -80,8 +77,7 @@ final class NBNetworkTests: QuickSpec {
 
             context("bundle has no baseURL info") {
                 beforeEach {
-                    sut = NBNetwork(requestExecuter: requestExecuterMock,
-                                    bundle: Bundle(for: NBNetwork.self))
+                    sut = NBNetwork(requestExecuter: requestExecuterMock)
                 }
 
                 it("returns an invalidBaseURL error") {
@@ -105,4 +101,5 @@ final class NBNetworkTests: QuickSpec {
             }
         }
     }
+    
 }

@@ -59,5 +59,5 @@ final class NBRequestConfigurator {
 
         request.url?.appendQueryItems(queryItems)
     }
-    
+
 }

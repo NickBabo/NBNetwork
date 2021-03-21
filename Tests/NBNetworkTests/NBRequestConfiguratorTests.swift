@@ -118,4 +118,5 @@ final class NBRequestConfiguratorTests: QuickSpec {
             }
         }
     }
+    
 }

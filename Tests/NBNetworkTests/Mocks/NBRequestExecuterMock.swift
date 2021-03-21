@@ -18,4 +18,5 @@ final class NBRequestExecuterMock: NBRequestExecuterProtocol {
             completion?(mockedResult)
         }
     }
+
 }

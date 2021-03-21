@@ -25,12 +25,15 @@ final class URLSessionMock: URLSessionProtocol {
         completionHandler(data, response, nil)
         return dataTaskMock
     }
+    
 }
 
 final class DataTaskMock: URLDataTaskProtocol {
+
     var resumeWasCalled: Bool = false
 
     func resume() {
         resumeWasCalled = true
     }
+
 }

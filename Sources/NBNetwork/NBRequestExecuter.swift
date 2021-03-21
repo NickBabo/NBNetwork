@@ -7,7 +7,7 @@ protocol NBRequestExecuterProtocol {
 }
 
 final class NBRequestExecuter: NBRequestExecuterProtocol {
-    
+
     private var successCodes: Range<Int> = 200..<299
 
     private let session: URLSessionProtocol
