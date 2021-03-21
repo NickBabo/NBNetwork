@@ -29,4 +29,5 @@ final class EncodableExtTests: QuickSpec {
             }
         }
     }
+    
 }

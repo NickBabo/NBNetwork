@@ -6,7 +6,7 @@ public typealias NBAPIResult = (Result<Data, NBAPIError>) -> Void
 /// Object utilized for configuring and executing requests. Access it by using the `NBNetwork.shared` property.
 public class NBNetwork: NBNetworkProtocol {
 
-    private let referenceBundle: Bundle
+    private var configuration: NBNetworkConfiguration?
     private let requestExecuter: NBRequestExecuterProtocol
     /// The delegate object that will be called to handle operations outside of the NBNetwork module's scope,
     /// such as authentication token handling. Please use the method `NBNetwork.set(delegate:)` to setup this delegate.
@@ -30,17 +30,15 @@ public class NBNetwork: NBNetworkProtocol {
     }()
 
     var baseURL: URL? {
-        guard let url: String = referenceBundle.getInfo(for: .baseURL),
+        guard let url: String = configuration?.baseURL,
             let baseURL = URL(string: url) else {
                 return nil
         }
         return baseURL
     }
 
-    init(requestExecuter: NBRequestExecuterProtocol,
-         bundle: Bundle = .main) {
+    init(requestExecuter: NBRequestExecuterProtocol) {
         self.requestExecuter = requestExecuter
-        self.referenceBundle = bundle
     }
 
     /// Sets up a delegate object for the NBNetwork's shared instance.
@@ -73,10 +71,22 @@ extension NBNetwork: ServiceRequester {
             return
         }
 
-        let request = NBRequestConfigurator(baseURL: baseURL,
-                                            delegate: delegate).configure(service)
+        let request = NBRequestConfigurator(
+            baseURL: baseURL,
+            delegate: delegate
+        ).configure(service)
 
         requestExecuter.execute(request: request, completion: completion)
+    }
+
+}
+
+extension NBNetwork {
+
+    @discardableResult
+    public func configure(baseURL: String) -> NBNetworkProtocol {
+        configuration = NBNetworkConfiguration(baseURL: baseURL)
+        return self
     }
 
 }

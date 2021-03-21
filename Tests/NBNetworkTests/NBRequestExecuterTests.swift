@@ -106,4 +106,5 @@ final class NBRequestExecuterTests: QuickSpec {
             mockSession.mock(data: nil, response: URLResponse())
         }
     }
+
 }

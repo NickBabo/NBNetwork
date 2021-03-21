@@ -17,6 +17,11 @@ public protocol NBNetworkProtocol {
         completion: @escaping (Result<T, NBAPIError>) -> Void
     )
 
+
+    /// Configures the essential information to perform requests
+    /// - Parameter baseURL: The base URL to serve as the initial path for every request.
+    func configure(baseURL: String) -> NBNetworkProtocol
+
 }
 
 /// Protocol defining objects that can perform a request given a `NBServiceProtocol` to serve as reference.
